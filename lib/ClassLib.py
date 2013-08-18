@@ -1,6 +1,6 @@
 __author__ = 'matt'
 
-from database.Class import Class
+from database.Tables import Class
 
 def add_class(session,name,times):
     '''

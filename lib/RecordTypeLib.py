@@ -1,6 +1,6 @@
 __author__ = 'matt'
 
-from database.RecordType import RecordType
+from database.Tables import RecordType
 
 
 def list_record_types(session):

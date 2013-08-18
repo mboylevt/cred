@@ -5,6 +5,21 @@ from sqlalchemy.ext.declarative import declarative_base
 
 base = declarative_base()
 
+class Student(base):
+    __tablename__ = 'student'
+    id = Column(Integer, primary_key=True)
+    first_name = Column(String)
+    last_name = Column(String)
+    address = Column(String)
+    city = Column(String)
+    state = Column(String)
+    date_created = Column(TIMESTAMP)
+    date_updated = Column(TIMESTAMP)
+    #record = relationship('Record', backref='student')
+
+    def __repr__(self):
+        return "<Student('%s','%s','%s')>" % (self.id, self.last_name, self.first_name)
+
 class Record(base):
     '''
     Cred Record table.  This object maps to the record table, which contains the meaty data we care about.
@@ -18,26 +33,11 @@ class Record(base):
     day_of_week = Column(Integer)
     score = Column(Integer)
 
-    student = relationship("Student", backref=backref('record', order_by=id))
+    #student = relationship("Student", backref=backref('record', order_by=id))
 
     def __repr__(self):
         return "<Record('%s','%s','%s','%s','%s')>" %\
                (self.id, self.student_id, self.record_type_id, self.class_id, self.score)
-
-class Student(base):
-    __tablename__ = 'student'
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
-    address = Column(String)
-    city = Column(String)
-    state = Column(String)
-    date_created = Column(TIMESTAMP)
-    date_updated = Column(TIMESTAMP)
-    record = relationship('Record', order_by=('Record.id'), backref='student')
-
-    def __repr__(self):
-        return "<Student('%s','%s','%s')>" % (self.id, self.last_name, self.first_name)
 
 class RecordType(base):
     __tablename__ = 'record_type'

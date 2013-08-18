@@ -1,6 +1,6 @@
 __author__ = 'matt'
 
-from database.Record import Record
+from database.Tables import Record
 
 def add_record(session, student_id, record_type_id, class_id, date, dow, score):
     '''

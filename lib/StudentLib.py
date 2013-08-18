@@ -1,12 +1,13 @@
 __author__ = 'matt'
 
-from database.Student import Student
+from database.Tables import Student
 
 def add_student(session,fname,lname,address,city,state):
     '''
     Function to add a student to the database
     '''
-    session.add(Student( first_name=fname,last_name=lname,address=address,city=city,state=state))
+    student = Student( first_name=fname,last_name=lname,address=address,city=city,state=state)
+    session.add(student)
     session.commit()
 
 def list_students(session):
