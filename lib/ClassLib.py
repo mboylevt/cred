@@ -14,6 +14,9 @@ def list_classes(session):
     for instance in session.query(Class).order_by(Class.id):
         print instance.name, instance.times_per_week
 
+def get_classes(session):
+    return session.query(Class).order_by(Class.id).all()
+
 def remove_class_by_id(session,id):
     '''
     Function to remove a class from the DB

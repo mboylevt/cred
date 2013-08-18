@@ -3,7 +3,7 @@ from datetime import date
 import csv
 from lib import StudentLib, RecordTypeLib, ClassLib, RecordLib, DBConnect
 
-#session = DBConnect.connect()
+session = DBConnect.connect()
 #RecordLib.add_record(session, 1000,1,2,date.today(),1,0)
 #RecordLib.list_records_per_student(session, 1000)
 #ClassLib.add_class(session, "Social Studies", 5)
@@ -31,14 +31,18 @@ def parse_csv(csv_file):
         thurs = (cred_reader.next()[1:], cred_reader.next()[1:])
         fri = (cred_reader.next()[1:], cred_reader.next()[1:])
 
-    return [mon,tue,wed,thurs,fri]
+    return_list = []
+    return_list.append(mon)
+    return_list.append(tue)
+    return_list.append(wed)
+    return_list.append(thurs)
+    return_list.append(fri)
+    return return_list
 
-def create_records(week):
-    cred_dict={}
-    cred_dict[1] = 'c'
-    cred_dict[2] = 'r'
-    cred_dict[3] = 'e'
-    cred_dict[4] = 'd'
+def create_records(session, week, student_id):
+
+    types = RecordTypeLib.get_record_types(session)
+    classes = ClassLib.get_classes(session)
 
     dow = 1
     for day in week:
@@ -47,9 +51,12 @@ def create_records(week):
             class_id = 1
             for chunk in split_string_into_chunks(entry,4):
                 cred_id = 1
-                for column in entry:
+                for column in chunk:
                     if column != '':
-                        print str(dow) + '\t' + str(class_id) + '\t' + cred_dict[cred_id]  +'\t' + column
+                        record_type = [x for x in types if x.id == cred_id][0]
+                        class_obj = [x for x in classes if x.class_id == class_id][0]
+                        print str(dow) + '\t' + class_obj.name + '\t' + record_type.letter  +'\t' + column
+                        RecordLib.add_record(session,student_id,record_type.id,class_obj.class_id,date.today(),dow,column)
                     cred_id = cred_id + 1
                     if cred_id > 4:
                         cred_id = 1
@@ -57,7 +64,7 @@ def create_records(week):
         dow = dow + 1
 
 week = parse_csv('D:\\Downloads\\cred.csv')
-create_records(week)
+create_records(session, week, 1000)
 
 
 
