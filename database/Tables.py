@@ -52,6 +52,7 @@ class Class(base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     times_per_week = Column(Integer)
+    class_id = Column(Integer)
 
     def __repr__(self):
         return "<('%s','%s','%s')>" % (self.id, self.name, self.times_per_week)
