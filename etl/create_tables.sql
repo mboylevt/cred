@@ -7,6 +7,8 @@ first_name varchar(255),
 address varchar(255),
 city varchar(255),
 state varchar(2),
+date_created TIMESTAMP DEFAULT now(),
+date_updated TIMESTAMP DEFAULT now(),
 PRIMARY KEY (id)
 );
 
