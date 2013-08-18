@@ -33,25 +33,31 @@ def parse_csv(csv_file):
 
     return [mon,tue,wed,thurs,fri]
 
-week = parse_csv('D:\\Downloads\\cred.csv')
-cred_dict={}
-cred_dict[1] = 'c'
-cred_dict[2] = 'r'
-cred_dict[3] = 'e'
-cred_dict[4] = 'd'
+def create_records(week):
+    cred_dict={}
+    cred_dict[1] = 'c'
+    cred_dict[2] = 'r'
+    cred_dict[3] = 'e'
+    cred_dict[4] = 'd'
 
-dow = 1
-for day in week:
-    print "DOW\tClassID\tCRED\tScore"
-    for entry in day:
-        class_id = 1
-        for chunk in split_string_into_chunks(entry,4):
-            cred_id = 1
-            for column in entry:
-                if column != '':
-                    print str(dow) + '\t' + str(class_id) + '\t' + cred_dict[cred_id]  +'\t' + column
-                cred_id = cred_id + 1
-                if cred_id > 4:
-                    cred_id = 1
-            class_id = class_id + 1
-    dow = dow + 1
+    dow = 1
+    for day in week:
+        print "DOW\tClassID\tCRED\tScore"
+        for entry in day:
+            class_id = 1
+            for chunk in split_string_into_chunks(entry,4):
+                cred_id = 1
+                for column in entry:
+                    if column != '':
+                        print str(dow) + '\t' + str(class_id) + '\t' + cred_dict[cred_id]  +'\t' + column
+                    cred_id = cred_id + 1
+                    if cred_id > 4:
+                        cred_id = 1
+                class_id = class_id + 1
+        dow = dow + 1
+
+week = parse_csv('D:\\Downloads\\cred.csv')
+create_records(week)
+
+
+
