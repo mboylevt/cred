@@ -1,7 +1,6 @@
 __author__ = 'matt'
 
 from database.Student import Student
-from lib import DBConnect
 
 def add_student(session,fname,lname,address,city,state):
     '''
