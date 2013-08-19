@@ -63,8 +63,10 @@ def create_records(session, week, student_id):
                 class_id = class_id + 1
         dow = dow + 1
 
-week = parse_csv('D:\\Downloads\\cred.csv')
-create_records(session, week, 1000)
+#week = parse_csv('D:\\Downloads\\cred.csv')
+#create_records(session, week, 1000)
 
 
 
+#RecordLib.list_records_per_student(session, 1000)
+RecordLib.calculate_percentage(session,1000,1,1)
