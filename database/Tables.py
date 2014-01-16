@@ -32,7 +32,6 @@ class Record(base):
     date_of_record = Column(Date)
     day_of_week = Column(Integer)
     score = Column(Integer)
-
     #student = relationship("Student", backref=backref('record', order_by=id))
 
     def __repr__(self):

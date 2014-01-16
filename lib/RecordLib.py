@@ -19,7 +19,9 @@ def list_records_per_student(session, student_id):
         print instance.id, instance.student_id, instance.score
 
 def calculate_percentage(session, student_id, class_id, record_type):
-
+    '''
+    Calculate a student's percentage based on a particular record type
+    '''
     total_points = 0
     points_earned = 0
     for instance in session.query(Record).filter(Record.student_id == student_id, Record.record_type_id == record_type, Record.class_id == class_id):
