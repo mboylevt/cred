@@ -11,9 +11,11 @@ def add_student(session,fname,lname,address,city,state):
     session.commit()
 
 def list_students(session):
-
     for instance in session.query(Student).order_by(Student.id):
         print instance.first_name, instance.last_name
+
+def get_students(session):
+    return session.query(Student).order_by(Student.id)
 
 def remove_student_by_id(session,id):
     '''

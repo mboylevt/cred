@@ -11,11 +11,14 @@
       </dl>
     </form>
   {% endif %}
-  <ul class=entries>
-  {% for entry in entries %}
-    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+  <ul class=students>
+  {% for student in students %}
+    <li>
+        <h2>{{ student.first_name + ' ' + student.last_name}}</h2>
+        {{ student.address }}<br/>
+        {{ student.city + ' ' + student.state }}
   {% else %}
-    <li><em>Unbelievable.  No entries here so far</em>
+    <li><em>Add me some students, son</em>
   {% endfor %}
   </ul>
 {% endblock %}
