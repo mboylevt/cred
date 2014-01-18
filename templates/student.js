@@ -12,9 +12,9 @@ function makeUL(array) {
 
     for(var i = 0; i < array.length; i++) {
         var item = document.createElement('li');
-        var h2 = document.createElement('h2');
-        h2.appendChild(document.createTextNode(array[i]));
-        item.appendChild(h2);
+//        var h2 = document.createElement('h2');
+//        h2.appendChild(document.createTextNode(array[i]));
+        item.appendChild(document.createTextNode(array[i]));
         list.appendChild(item);
     }
     return list;
