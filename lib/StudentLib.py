@@ -18,7 +18,7 @@ def get_students(session):
     return session.query(Student).order_by(Student.id)
 
 def find_students(session, first_name=None):
-    return session.query(Student).filter_by(first_name=first_name).order_by(Student.id)
+    return session.query(Student).filter_by(first_name=first_name).all()
 
 def remove_student_by_id(session,id):
     '''

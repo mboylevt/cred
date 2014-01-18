@@ -1,5 +1,16 @@
 <!doctype html>
 <title>CRED System</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script type="text/javascript">
+    {% include "adder.js" %}
+</script>
+<script type="text/javascript">
+    {% include "student.js" %}
+</script>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
   <a href="/"><h1>CRED System</h1></a>
