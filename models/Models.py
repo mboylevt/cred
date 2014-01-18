@@ -6,6 +6,10 @@ from sqlalchemy.ext.declarative import declarative_base
 base = declarative_base()
 
 class Student(base):
+    '''
+    Cred Student table.
+    This object maps to the Student table
+    '''
     __tablename__ = 'student'
     id = Column(Integer, primary_key=True)
     first_name = Column(String)
@@ -15,14 +19,14 @@ class Student(base):
     state = Column(String)
     date_created = Column(TIMESTAMP)
     date_updated = Column(TIMESTAMP)
-    #record = relationship('Record', backref='student')
 
     def __repr__(self):
         return "<Student('%s','%s','%s')>" % (self.id, self.last_name, self.first_name)
 
 class Record(base):
     '''
-    Cred Record table.  This object maps to the record table, which contains the meaty data we care about.
+    Cred Record table.
+    This object maps to the record table, which contains the meaty data we care about.
     '''
     __tablename__ = 'record'
     id = Column(Integer, primary_key=True)
@@ -32,13 +36,16 @@ class Record(base):
     date_of_record = Column(Date)
     day_of_week = Column(Integer)
     score = Column(Integer)
-    #student = relationship("Student", backref=backref('record', order_by=id))
 
     def __repr__(self):
         return "<Record('%s','%s','%s','%s','%s')>" %\
                (self.id, self.student_id, self.record_type_id, self.class_id, self.score)
 
 class RecordType(base):
+    '''
+    Cred RecordType table.
+    This maps a RecordTypeId entry to a letter
+    '''
     __tablename__ = 'record_type'
     id = Column(Integer, primary_key=True)
     letter = Column(String)
@@ -47,6 +54,10 @@ class RecordType(base):
         return "<('%s','%s')>" % (self.id, self.letter)
 
 class Class(base):
+    '''
+    Cred Class table.
+    This defines information about a class
+    '''
     __tablename__ = 'class'
     id = Column(Integer, primary_key=True)
     name = Column(String)

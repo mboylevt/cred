@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="{{ url_for('student_search') }}" method=post class=student-search>
+      <dl>
+        <dt>First Name: <input type=text size=30 name=first-name> <input type=submit value=Search>
+      </dl>
+  </form>
+  <ul class=students>
+  {% for student in students %}
+    <li>
+        <h2>{{ student.first_name + ' ' + student.last_name}}</h2>
+        {{ student.address }}<br/>
+        {{ student.city + ' ' + student.state }}
+  {% endfor %}
+  </ul>
+{% endblock %}

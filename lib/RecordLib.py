@@ -1,10 +1,10 @@
 __author__ = 'matt'
 
-from database.Tables import Record
+from models.Models import Record
 
 def add_record(session, student_id, record_type_id, class_id, date, dow, score):
     '''
-    Function to add a record to the database
+    Function to add a record to the models
     '''
     session.add(Record(student_id=student_id, record_type_id=record_type_id,
         class_id=class_id, date_of_record=date, day_of_week=dow, score=score))

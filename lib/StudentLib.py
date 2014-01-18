@@ -1,10 +1,10 @@
 __author__ = 'matt'
 
-from database.Tables import Student
+from models.Models import Student
 
 def add_student(session,fname,lname,address,city,state):
     '''
-    Function to add a student to the database
+    Function to add a student to the models
     '''
     student = Student( first_name=fname,last_name=lname,address=address,city=city,state=state)
     session.add(student)
@@ -16,6 +16,9 @@ def list_students(session):
 
 def get_students(session):
     return session.query(Student).order_by(Student.id)
+
+def find_students(session, first_name=None):
+    return session.query(Student).filter_by(first_name=first_name).order_by(Student.id)
 
 def remove_student_by_id(session,id):
     '''
