@@ -63,7 +63,7 @@ def create_records(session, week, student_id):
                 class_id = class_id + 1
         dow = dow + 1
 
-#week = parse_csv('D:\\Downloads\\cred.csv')
+week = parse_csv('D:\\Downloads\\cred.csv')
 #create_records(session, week, 1000)
 
 
