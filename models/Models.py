@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 base = declarative_base()
 
+
 class Student(base):
     """
     Cred Student table.
@@ -22,6 +23,7 @@ class Student(base):
 
     def __repr__(self):
         return "<Student('%s','%s','%s')>" % (self.id, self.last_name, self.first_name)
+
 
 class Record(base):
     """
@@ -41,6 +43,7 @@ class Record(base):
         return "<Record('%s','%s','%s','%s','%s')>" %\
                (self.id, self.student_id, self.record_type_id, self.class_id, self.score)
 
+
 class RecordType(base):
     """
     Cred RecordType table.
@@ -52,6 +55,7 @@ class RecordType(base):
 
     def __repr__(self):
         return "<('%s','%s')>" % (self.id, self.letter)
+
 
 class Class(base):
     """
