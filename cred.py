@@ -11,7 +11,7 @@
 """
 
 from flask import Flask, request, render_template, jsonify
-from lib import StudentLib, DBConnect
+from lib import StudentLib, DBConnect, RecordLib, RecordTypeLib
 from flask.ext.assets import Environment, Bundle
 
 app = Flask(__name__)
@@ -31,12 +31,23 @@ env.register('js_charts', js_charts)
 env.register('css_common', css_common)
 
 @app.route('/_student/get_student_names')
-def student_search():
+def get_student_names():
     first_name = request.args.get('firstName', 0, type=str)
     students = StudentLib.find_students(session=session, first_name=first_name)
-    to_return = []
+    to_return = {}
     for student in students:
-        to_return.append(student.first_name + ' ' + student.last_name)
+        to_return[student.id] = student.first_name + ' ' + student.last_name
+    return jsonify(result=to_return)
+
+
+@app.route('/_student/get_cred_points_by_type')
+def get_cred_point_by_type():
+    student_id = request.args.get('studentId', 0, type=str)
+    students = RecordLib.list_records_per_student(session=session, student_id=student_id)
+    record_types = RecordTypeLib.get_record_types()
+    to_return = {}
+    for student in students:
+        to_return[student.id] = student.first_name + ' ' + student.last_name
     return jsonify(result=to_return)
 
 

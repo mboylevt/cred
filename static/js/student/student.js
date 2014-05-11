@@ -4,8 +4,10 @@
 
 function populateDropdown(data) {
     var select = document.getElementById("studentDropdown");
-    for(var i = 0; i < data.length; i++) {
-        var opt = data[i];
+    var keys = Object.keys(data);
+    for(var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var opt = data[key];
         var el = document.createElement("option");
         el.textContent = opt;
         el.value = opt;
@@ -22,6 +24,8 @@ $( document ).ready(function() {
       populateDropdown(data.result);
     });
     populateLineChart();
+    populateRadarChart();
+    populatePieChart();
     console.log( "ready!" );
 });
 
