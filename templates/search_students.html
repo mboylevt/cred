@@ -4,13 +4,13 @@
     <label>Student</label>
     <select class="dropdown" name="sort" id="studentDropdown"></select>
     <button type="button" id="refreshData" onclick="refreshData();">Refresh</button>
-    <label class="big-numbah" id="totalPointsEarned"></label>
-    <label class="big-numbah" id="percentageEarned"></label>
   </div>
   <div>
-{#      <h2 class="title radar-chart">Cred Points By Type</h2>#}
+    <label class="big-numbah" id="totalPointsEarned"></label>
+    <label class="big-numbah" id="percentage"></label>
+  </div>
+  <div>
       <canvas class="chart" id="studentRadarChart" width="600" height="600"></canvas>
-{#      <h2 class="title bar-chart">Cred Points By Class</h2>#}
       <canvas class="chart" id="studentBarChart" width="600" height="600"></canvas>
   </div>
 {% endblock %}

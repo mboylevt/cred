@@ -99,6 +99,23 @@ def get_cred_points_by_class():
     to_return['Missed'] = points_missed
     return jsonify(result=to_return)
 
+@app.route('/_student/get_top_level_numbers')
+def get_top_level_numbers():
+    """
+    Get the total points earned and percentage
+    """
+    student_id = request.args.get('studentId', 0, type=str)
+    records = RecordLib.get_records_per_student(session=session, student_id=student_id)
+    total_possible = len(records)
+    total_earned = 0
+    to_return = {}
+    for record in records:
+        if record.score == 1:
+            total_earned += 1
+    to_return['total_earned'] = total_earned
+    to_return['percentage'] = '{:.2%}'.format(float(total_earned) / float(total_possible))
+    return jsonify(result=to_return)
+
 ### Main Route
 @app.route('/')
 def home():

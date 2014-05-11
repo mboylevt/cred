@@ -15,6 +15,13 @@ function populateDropdown(data) {
     }
 }
 
+function populateTopNumbers(data) {
+    var totalEarned = data['total_earned'];
+    var percentage = data['percentage'];
+    $('#totalPointsEarned').text(totalEarned);
+    $('#percentage').text(percentage);
+}
+
 function refreshData() {
     var dropdown = document.getElementById("studentDropdown");
     var studentId = dropdown.options[dropdown.selectedIndex].value;
@@ -32,6 +39,13 @@ function refreshData() {
       data: {studentId : studentId}
     }).done(function(data) {
       populateBarChart(data.result);
+    });
+    $.ajax({
+      url: "/_student/get_top_level_numbers",
+      context: document.body,
+      data: {studentId : studentId}
+    }).done(function(data) {
+      populateTopNumbers(data.result);
     });
 }
 
