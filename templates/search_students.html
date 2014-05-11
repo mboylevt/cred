@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
-  <form class=student-search>
-    <select name="sort" id="studentDropdown"/>
-  </form>
-  <canvas id="studentLineChart" width="400" height="400"></canvas>
+  <label>Student</label>
+  <select class='dropdown' name="sort" id="studentDropdown"></select>
+  <div>
+    <canvas class="chart" id="studentLineChart" width="400" height="400"></canvas>
+{#    <canvas class="chart" id="studentLineChart"></canvas>#}
+{#    <canvas class="chart" id="studentLineChart"></canvas>#}
+  </div>
 {% endblock %}

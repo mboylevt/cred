@@ -21,6 +21,7 @@ $( document ).ready(function() {
     }).done(function(data) {
       populateDropdown(data.result);
     });
+    populateLineChart();
     console.log( "ready!" );
 });
 

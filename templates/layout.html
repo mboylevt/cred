@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
   <head>
-      {% block head %}
       {% assets "css_common" %}
           <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
       {% endassets %}
@@ -14,7 +13,6 @@
       {%  assets "js_charts" %}
           <script type="text/javascript" src="{{ ASSET_URL }}"></script>
       {% endassets %}
-      {% endblock %}
   </head>
   <title>CRED System</title>
   <div class=page>
