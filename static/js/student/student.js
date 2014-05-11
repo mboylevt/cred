@@ -26,13 +26,13 @@ function refreshData() {
     }).done(function(data) {
       populateRadarChart(data.result);
     });
-    $.ajax({
-      url: "/_student/get_cred_points_by_class",
-      context: document.body,
-      data: {studentId : studentId}
-    }).done(function(data) {
-      populateRadarChart(data.result);
-    });
+//    $.ajax({
+//      url: "/_student/get_cred_points_by_class",
+//      context: document.body,
+//      data: {studentId : studentId}
+//    }).done(function(data) {
+//      populateRadarChart(data.result);
+//    });
 }
 
 // A $( document ).ready() block.

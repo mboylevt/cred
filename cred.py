@@ -11,7 +11,7 @@
 """
 
 from flask import Flask, request, render_template, jsonify
-from lib import StudentLib, DBConnect, RecordLib, RecordTypeLib
+from lib import StudentLib, DBConnect, RecordLib, RecordTypeLib, ClassLib
 from flask.ext.assets import Environment, Bundle
 
 app = Flask(__name__)
@@ -46,7 +46,7 @@ def get_student_names():
 
 
 @app.route('/_student/get_cred_points_by_type')
-def get_cred_point_by_type():
+def get_cred_points_by_type():
     """
     Get cred points by studentId
     """
@@ -55,13 +55,48 @@ def get_cred_point_by_type():
     record_types = RecordTypeLib.get_record_types(session=session)
     record_type_tracker = {}
     to_return = {}
+    points_earned = {}
+    points_missed = {}
     for record_type in record_types:
         record_type_tracker[record_type.id] = record_type.letter
-        to_return[record_type.letter] = 0
+        points_missed[record_type.letter] = 0
+        points_earned[record_type.letter] = 0
     for record in records:
+        index = record_type_tracker[record.record_type_id]
         if record.score == 1:
-            index = record_type_tracker[record.record_type_id]
-            to_return[index] += 1
+            points_earned[index] += 1
+        else:
+            points_missed[index] += 1
+    to_return['Earned'] = points_earned
+    to_return['Missed'] = points_missed
+    return jsonify(result=to_return)
+
+@app.route('/_student/get_cred_points_by_class')
+def get_cred_points_by_class():
+    """
+    Get cred points by studentId
+
+    Returns a json array, with both points awarded and points missed
+    """
+    student_id = request.args.get('studentId', 0, type=str)
+    records = RecordLib.get_records_per_student(session=session, student_id=student_id)
+    classes = ClassLib.get_classes(session=session)
+    class_tracker = {}
+    to_return = {}
+    points_earned = {}
+    points_missed = {}
+    for klass in classes:
+        class_tracker[klass.id] = klass.name
+        points_earned[klass.name] = 0
+        points_missed[klass.name] = 0
+    for record in records:
+        index = class_tracker[record.class_id]
+        if record.score == 1:
+            points_earned[index] += 1
+        if record.score == 1:
+            points_missed[index] += 1
+    to_return['Earned'] = points_earned
+    to_return['Missed'] = points_missed
     return jsonify(result=to_return)
 
 ### Main Route

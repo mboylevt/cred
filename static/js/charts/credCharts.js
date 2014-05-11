@@ -31,25 +31,33 @@ function populateRadarChart(result) {
     var chartData = 0;
     var options = 0;
     if (result) {
-        var chart_labels = Object.keys(result);
+        var pointsEarned = result['Earned'];
+        var pointsMissed = result['Missed'];
+        console.log("Earned: " + pointsEarned);
+        console.log("Missed: " + pointsMissed);
         options = {
-                        scaleOverlay : false,
-                        scaleOverride : true,
-                        scaleSteps : 10,
-                        scaleStepWidth : 2,
-                        scaleStartValue : 0
+                    scaleOverlay : false,
+                    scaleOverride : true,
+                    scaleSteps : 10,
+                    scaleStepWidth : 4,
+                    scaleStartValue : 0
         };
         chartData = {
-            labels : ["C","R","E","D"],
+            labels : ["Cooperation","Responsibility","Empowerment","Determination"],
             datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    pointColor : "rgba(220,220,220,1)",
+                    pointStrokeColor : "#fff",
+                     data : [pointsMissed["C"],pointsMissed["R"],pointsMissed["E"],pointsMissed["D"]]
+                },
                 {
                     fillColor : "rgba(151,187,205,0.5)",
                     strokeColor : "rgba(151,187,205,1)",
                     pointColor : "rgba(151,187,205,1)",
                     pointStrokeColor : "#fff",
-                    data : [result["C"],result["R"],result["E"],result["D"]]
-//                    data : [12,10,15,12]
-//                    data : [10,24,10,12]
+                    data : [pointsEarned["C"],pointsEarned["R"],pointsEarned["E"],pointsEarned["D"]]
                 }
             ]
         };
