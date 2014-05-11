@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 {% block body %}
-  <label>Student</label>
-  <select class='dropdown' name="sort" id="studentDropdown"></select>
+  <div>
+    <label>Student</label>
+    <select class='dropdown' name="sort" id="studentDropdown"></select>
+    <button type="button" id="refreshData" onclick="refreshData();">Refresh</button>
+  </div>
   <div>
     <canvas class="chart" id="studentLineChart" width="400" height="400"></canvas>
     <canvas class="chart" id="studentRadarChart" width="400" height="400"></canvas>

@@ -27,28 +27,57 @@ function populateLineChart() {
     var myNewChart = new Chart(ctx).Line(data);
 }
 
-function populateRadarChart() {
-    var data = {
-        labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
-        datasets : [
-            {
-                fillColor : "rgba(220,220,220,0.5)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
-                pointStrokeColor : "#fff",
-                data : [65,59,90,81,56,55,40]
-            },
-            {
-                fillColor : "rgba(151,187,205,0.5)",
-                strokeColor : "rgba(151,187,205,1)",
-                pointColor : "rgba(151,187,205,1)",
-                pointStrokeColor : "#fff",
-                data : [28,48,40,19,96,27,100]
-            }
-        ]
-    };
+function populateRadarChart(result) {
+    var chartData = 0;
+    var options = 0;
+    if (result) {
+        var chart_labels = Object.keys(result);
+        options = {
+                        scaleOverlay : false,
+                        scaleOverride : true,
+                        scaleSteps : 10,
+                        scaleStepWidth : 2,
+                        scaleStartValue : 0
+        };
+        chartData = {
+            labels : ["C","R","E","D"],
+            datasets : [
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff",
+                    data : [result["C"],result["R"],result["E"],result["D"]]
+//                    data : [12,10,15,12]
+//                    data : [10,24,10,12]
+                }
+            ]
+        };
+    }
+    else {
+        chartData = {
+            labels : ["Eating","Drinking","Sleeping","Designing","Coding","Partying","Running"],
+//            labels : ["Eating","Drinking","Sleeping","Designing"],
+            datasets : [
+                {
+                    fillColor : "rgba(220,220,220,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    pointColor : "rgba(220,220,220,1)",
+                    pointStrokeColor : "#fff",
+                    data : [65,59,90,81,56,55,40]
+                },
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff",
+                    data : [28,48,40,19,96,27,100]
+                }
+            ]
+        };
+    }
     var ctx = document.getElementById("studentRadarChart").getContext("2d");
-    var myNewChart = new Chart(ctx).Radar(data);
+    var myNewChart = new Chart(ctx).Radar(chartData,options);
 }
 
 function populatePieChart() {

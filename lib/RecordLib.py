@@ -25,7 +25,7 @@ def get_records_per_student(session, student_id):
     """
     Function to get all records belonging to a student
     """
-    return session.query(Record).order_by(Record.id).filter(Record.student_id == student_id)
+    return session.query(Record).order_by(Record.id).filter(Record.student_id == student_id).all()
 
 
 def calculate_percentage(session, student_id, class_id, record_type):

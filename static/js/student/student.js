@@ -10,9 +10,29 @@ function populateDropdown(data) {
         var opt = data[key];
         var el = document.createElement("option");
         el.textContent = opt;
-        el.value = opt;
+        el.value = key;
         select.appendChild(el);
     }
+}
+
+function refreshData() {
+    var dropdown = document.getElementById("studentDropdown");
+    var studentId = dropdown.options[dropdown.selectedIndex].value;
+    console.log('Selected: ' + studentId);
+    $.ajax({
+      url: "/_student/get_cred_points_by_type",
+      context: document.body,
+      data: {studentId : studentId}
+    }).done(function(data) {
+      populateRadarChart(data.result);
+    });
+    $.ajax({
+      url: "/_student/get_cred_points_by_class",
+      context: document.body,
+      data: {studentId : studentId}
+    }).done(function(data) {
+      populateRadarChart(data.result);
+    });
 }
 
 // A $( document ).ready() block.
@@ -23,9 +43,9 @@ $( document ).ready(function() {
     }).done(function(data) {
       populateDropdown(data.result);
     });
-    populateLineChart();
-    populateRadarChart();
-    populatePieChart();
+//    populateLineChart();
+//    populateRadarChart();
+//    populatePieChart();
     console.log( "ready!" );
 });
 

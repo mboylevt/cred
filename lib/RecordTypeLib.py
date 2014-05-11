@@ -9,4 +9,7 @@ def list_record_types(session):
 
 
 def get_record_types(session):
+    """
+    @rtype: [RecordType]
+    """
     return session.query(RecordType).order_by(RecordType.id).all()
