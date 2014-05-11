@@ -1,12 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
   <form class=student-search>
-    <select name="sort" id="searchResultsSortOptions">
-      <option value="name">Alphabetical A-Z</option>
-      <option value="newest">Newest</option>
-      <option value="pricelh">Price: Low to High</option>
-      <option value="price">Price: High to Low</option>
-    </select>
+    <select name="sort" id="student-dropdown"/>
   </form>
   <span id=student-result></span>
 {% endblock %}

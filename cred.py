@@ -28,15 +28,14 @@ env.register('js_common', js_common)
 env.register('js_student', js_student)
 env.register('css_common', css_common)
 
-
-
 @app.route('/_add_numbers')
 def add_numbers():
     a = request.args.get('a', 0, type=int)
     b = request.args.get('b', 0, type=int)
     return jsonify(result=a + b)
 
-@app.route('/_student/search')
+
+@app.route('/_student/get_students')
 def student_search():
     first_name = request.args.get('firstName', 0, type=str)
     students = StudentLib.find_students(session=session, first_name=first_name)
@@ -44,6 +43,7 @@ def student_search():
     for student in students:
         to_return.append(student.first_name + ' ' + student.last_name)
     return jsonify(result=to_return)
+
 
 @app.route('/')
 def home():
