@@ -3,7 +3,7 @@
     Flaskr
     ~~~~~~
 
-    A microblog example application written as Flask tutorial with
+    A microblog reflection application written as Flask tutorial with
     Flask and sqlite3.
 
     :copyright: (c) 2014 by Armin Ronacher.
@@ -37,4 +37,4 @@ def home():
     return render_template('search_students.html', students=[])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5050)
