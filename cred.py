@@ -12,10 +12,23 @@
 
 from flask import Flask, request, render_template, jsonify
 from lib import StudentLib, DBConnect
-
+from flask.ext.assets import Environment, Bundle
 
 app = Flask(__name__)
 session = DBConnect.connect()
+
+env = Environment(app)
+
+# Bundle and register javascript and CSS
+js_common = Bundle('js/jquery/jquery.js', output='gen/common.js')
+js_student = Bundle('js/student/student.js', output='gen/student.js')
+css_common = Bundle('css/style.css', output='gen/common.css')
+
+env.register('js_common', js_common)
+env.register('js_student', js_student)
+env.register('css_common', css_common)
+
+
 
 @app.route('/_add_numbers')
 def add_numbers():

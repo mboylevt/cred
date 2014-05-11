@@ -1,9 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
   <form class=student-search>
-      <dl>
-        <dt>First Name: <input type=text size=30 name=first-name> <input type=submit value=Search id="student-search">
-      </dl>
+    <select name="sort" id="searchResultsSortOptions">
+      <option value="name">Alphabetical A-Z</option>
+      <option value="newest">Newest</option>
+      <option value="pricelh">Price: Low to High</option>
+      <option value="price">Price: High to Low</option>
+    </select>
   </form>
   <span id=student-result></span>
 {% endblock %}
