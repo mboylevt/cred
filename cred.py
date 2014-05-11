@@ -22,20 +22,15 @@ env = Environment(app)
 # Bundle and register javascript and CSS
 js_common = Bundle('js/jquery/jquery.js', output='gen/common.js')
 js_student = Bundle('js/student/student.js', output='gen/student.js')
+js_charts = Bundle('js/charts/charts.min.js','js/charts/credCharts.js',  output='gen/charts.js')
 css_common = Bundle('css/style.css', output='gen/common.css')
 
 env.register('js_common', js_common)
 env.register('js_student', js_student)
+env.register('js_charts', js_charts)
 env.register('css_common', css_common)
 
-@app.route('/_add_numbers')
-def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
-
-
-@app.route('/_student/get_students')
+@app.route('/_student/get_student_names')
 def student_search():
     first_name = request.args.get('firstName', 0, type=str)
     students = StudentLib.find_students(session=session, first_name=first_name)
