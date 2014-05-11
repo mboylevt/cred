@@ -90,10 +90,10 @@ def get_cred_points_by_class():
         points_earned[klass.name] = 0
         points_missed[klass.name] = 0
     for record in records:
-        index = class_tracker[record.class_id]
+        index = class_tracker[record.class_id+1]
         if record.score == 1:
             points_earned[index] += 1
-        if record.score == 1:
+        else:
             points_missed[index] += 1
     to_return['Earned'] = points_earned
     to_return['Missed'] = points_missed

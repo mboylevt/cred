@@ -26,13 +26,13 @@ function refreshData() {
     }).done(function(data) {
       populateRadarChart(data.result);
     });
-//    $.ajax({
-//      url: "/_student/get_cred_points_by_class",
-//      context: document.body,
-//      data: {studentId : studentId}
-//    }).done(function(data) {
-//      populateRadarChart(data.result);
-//    });
+    $.ajax({
+      url: "/_student/get_cred_points_by_class",
+      context: document.body,
+      data: {studentId : studentId}
+    }).done(function(data) {
+      populateBarChart(data.result);
+    });
 }
 
 // A $( document ).ready() block.
@@ -43,9 +43,6 @@ $( document ).ready(function() {
     }).done(function(data) {
       populateDropdown(data.result);
     });
-//    populateLineChart();
-//    populateRadarChart();
-//    populatePieChart();
     console.log( "ready!" );
 });
 
